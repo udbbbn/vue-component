@@ -23,9 +23,9 @@ export default defineComponent(
           </colgroup>
           <tbody>
             {dataSource.map((data, idx) => (
-              <tr class={cn(Classes.vcTableRow, idx === 0 ? 'first' : '')} key={idx}>
+              <tr class={cn(Classes.vcTableRow, { first: idx === 0 })} key={idx}>
                 {colKeys.map((key, i) => (
-                  <td class={cn(Classes.vcTableCell, i === 0 ? 'first' : '')}>{data[key]}</td>
+                  <td class={cn(Classes.vcTableCell, { first: i === 0 })}>{data[key]}</td>
                 ))}
               </tr>
             ))}

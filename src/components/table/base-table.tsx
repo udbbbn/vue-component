@@ -24,10 +24,10 @@ export default defineComponent(
   <T extends Record<string, unknown>>(props: BaseTableProps<T>) => {
     const { columns, dataSource, hasHeader } = props
     return () => (
-      <StyledVcTableWrapper class={cn(hasHeader ? 'has-header' : '')}>
+      <StyledVcTableWrapper class={cn(Classes.vcTableWrapper, { 'has-header': hasHeader })}>
         <div class={cn(Classes.vcTable)}>
           {hasHeader && <TableHeader columns={columns} />}
-          <TableBody columns={columns} dataSource={dataSource} hasHeader={hasHeader}></TableBody>
+          <TableBody columns={columns} dataSource={dataSource}></TableBody>
         </div>
       </StyledVcTableWrapper>
     )

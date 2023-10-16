@@ -26,7 +26,7 @@ export default defineComponent(
           <thead>
             <tr class={cn(Classes.vcTableHeaderRow)}>
               {columns.map((col, i) => (
-                <th class={cn(Classes.vcTableHeaderCell, i === 0 ? 'first' : '')} key={col.code}>
+                <th class={cn(Classes.vcTableHeaderCell, { first: i === 0 })} key={col.code}>
                   {col.name}
                 </th>
               ))}

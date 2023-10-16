@@ -1,4 +1,4 @@
-import styled, { css } from 'vue3-styled-components'
+import styled, { css } from '@magister_zito/vue3-styled-components'
 
 const prefix = 'vc-'
 
