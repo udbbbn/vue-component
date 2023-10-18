@@ -1,6 +1,5 @@
 import styled, { css } from '@magister_zito/vue3-styled-components'
-
-const prefix = 'vc-'
+import { prefix } from '../styles'
 
 export const Classes = {
   vcTableWrapper: `${prefix}table-wrapper`,

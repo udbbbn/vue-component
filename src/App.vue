@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Table from './components/table/index'
+import Table from './components/table'
 </script>
 
 <template>

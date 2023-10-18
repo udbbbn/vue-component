@@ -3,7 +3,7 @@ import BaseTable, { type Column } from './base-table'
 
 export default defineComponent(
   () => {
-    const dataSource = [
+    const dataSource: any[] = [
       { prov: '湖北省', confirmed: 54406, cured: 4793, dead: 1457, t: '2020-02-15 19:52:02' },
       { prov: '广东省', confirmed: 1294, cured: 409, dead: 2, t: '2020-02-15 19:52:02' },
       { prov: '河南省', confirmed: 1212, cured: 390, dead: 13, t: '2020-02-15 19:52:02' },

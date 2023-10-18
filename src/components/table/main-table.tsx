@@ -6,7 +6,8 @@ import { getComponentProps } from './util'
 
 export default defineComponent(
   (props: DefaultBaseTableProps) => {
-    const { columns, dataSource } = props
+    const { columns, dataSource, components } = props
+    const { EmptyContent } = components!
     const colKeys = columns.map((el) => el.code)
     return () => (
       <div class={cn(Classes.vcTableBody)}>
@@ -22,13 +23,21 @@ export default defineComponent(
             ))}
           </colgroup>
           <tbody>
-            {dataSource.map((data, idx) => (
-              <tr class={cn(Classes.vcTableRow, { first: idx === 0 })} key={idx}>
-                {colKeys.map((key, i) => (
-                  <td class={cn(Classes.vcTableCell, { first: i === 0 })}>{data[key]}</td>
-                ))}
+            {dataSource.length ? (
+              dataSource.map((data, idx) => (
+                <tr class={cn(Classes.vcTableRow, { first: idx === 0 })} key={idx}>
+                  {colKeys.map((key, i) => (
+                    <td class={cn(Classes.vcTableCell, { first: i === 0 })}>{data[key]}</td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr class={cn(Classes.vcTableRow, 'first')}>
+                <td class={cn(Classes.vcTableCell, 'first')} colspan={columns.length}>
+                  <EmptyContent />
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

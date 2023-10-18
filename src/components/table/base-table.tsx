@@ -12,22 +12,30 @@ export interface Column {
   align?: 'left' | 'right'
 }
 
+export interface Components {
+  EmptyContent: () => JSX.Element
+}
+
 export interface BaseTableProps<T> {
   dataSource: T[]
   columns: Column[]
+  rootClassName?: string
   hasHeader?: boolean
+  components?: Components
 }
 
 export type DefaultBaseTableProps = BaseTableProps<Record<string, unknown>>
 
 export default defineComponent(
   <T extends Record<string, unknown>>(props: BaseTableProps<T>) => {
-    const { columns, dataSource, hasHeader } = props
+    const { rootClassName, columns, dataSource, components, hasHeader } = props
     return () => (
-      <StyledVcTableWrapper class={cn(Classes.vcTableWrapper, { 'has-header': hasHeader })}>
+      <StyledVcTableWrapper
+        class={cn(Classes.vcTableWrapper, rootClassName, { 'has-header': hasHeader })}
+      >
         <div class={cn(Classes.vcTable)}>
           {hasHeader && <TableHeader columns={columns} />}
-          <TableBody columns={columns} dataSource={dataSource}></TableBody>
+          <TableBody columns={columns} dataSource={dataSource} components={components}></TableBody>
         </div>
       </StyledVcTableWrapper>
     )
