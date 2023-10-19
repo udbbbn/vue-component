@@ -1,4 +1,4 @@
-import { defineComponent, type CSSProperties } from 'vue'
+import { defineComponent, type CSSProperties, type PropType } from 'vue'
 import EmptyImg from './imgs/TB1l1LcM3HqK1RjSZJnXXbNLpXa-50-50.svg'
 import cn from 'classnames'
 import { noop } from '../util'
@@ -40,7 +40,7 @@ export default defineComponent(
       rootClassName: { type: String },
       description: { type: String },
       image: { type: String },
-      imageStyle: { type: Object, default: () => ({}) }
+      imageStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) }
     },
     emits: [],
     slots: {

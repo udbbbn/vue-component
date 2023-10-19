@@ -44,6 +44,7 @@ export default defineComponent(
     )
   },
   {
+    name: 'main-table',
     props: getComponentProps(),
     emits: []
   }

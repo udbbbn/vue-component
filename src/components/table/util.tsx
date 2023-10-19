@@ -1,15 +1,15 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { DefaultBaseTableProps } from './base-table'
+import type { ComponentObjectPropsOptions, PropType } from 'vue'
+import type { Column, Components, DefaultBaseTableProps } from './base-table'
 import EmptyContent from '../empty'
 
 export const getComponentProps: () => ComponentObjectPropsOptions<DefaultBaseTableProps> = () => ({
   rootClassName: { type: String, default: '' },
   columns: {
-    type: Array,
+    type: Array as PropType<Column[]>,
     default: () => []
   },
   dataSource: {
-    type: Array,
+    type: Array as PropType<Record<string, unknown>[]>,
     default: () => []
   },
   hasHeader: {
@@ -17,7 +17,7 @@ export const getComponentProps: () => ComponentObjectPropsOptions<DefaultBaseTab
     default: true
   },
   components: {
-    type: Object,
+    type: Object as PropType<Components>,
     default: {
       EmptyContent: (
         <EmptyContent
