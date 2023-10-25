@@ -6,14 +6,13 @@ import { getComponentProps } from './util'
 
 export default defineComponent(
   (props: DefaultBaseTableProps) => {
-    const { columns, dataSource, components } = props
-    const { EmptyContent } = components!
-    const colKeys = columns.map((el) => el.code)
+    const { EmptyContent } = props.components!
+    const colKeys = props.columns.map((el) => el.code)
     return () => (
       <div class={cn(Classes.vcTableBody)}>
         <table>
           <colgroup>
-            {columns.map((col) => (
+            {props.columns.map((col) => (
               <col
                 key={col.code}
                 style={{
@@ -23,8 +22,8 @@ export default defineComponent(
             ))}
           </colgroup>
           <tbody>
-            {dataSource.length ? (
-              dataSource.map((data, idx) => (
+            {props.dataSource.length ? (
+              props.dataSource.map((data, idx) => (
                 <tr class={cn(Classes.vcTableRow, { first: idx === 0 })} key={idx}>
                   {colKeys.map((key, i) => (
                     <td class={cn(Classes.vcTableCell, { first: i === 0 })}>{data[key]}</td>
@@ -33,7 +32,7 @@ export default defineComponent(
               ))
             ) : (
               <tr class={cn(Classes.vcTableRow, 'first')}>
-                <td class={cn(Classes.vcTableCell, 'first')} colspan={columns.length}>
+                <td class={cn(Classes.vcTableCell, 'first')} colspan={props.columns.length}>
                   <EmptyContent />
                 </td>
               </tr>

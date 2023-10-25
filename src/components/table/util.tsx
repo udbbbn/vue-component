@@ -1,9 +1,10 @@
 import type { ComponentObjectPropsOptions, PropType } from 'vue'
 import type { Column, Components, DefaultBaseTableProps } from './base-table'
 import EmptyContent from '../empty'
+import { getDefaultProps } from '../util'
 
 export const getComponentProps: () => ComponentObjectPropsOptions<DefaultBaseTableProps> = () => ({
-  rootClassName: { type: String, default: '' },
+  ...getDefaultProps(),
   columns: {
     type: Array as PropType<Column[]>,
     default: () => []

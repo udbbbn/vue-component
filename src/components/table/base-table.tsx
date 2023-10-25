@@ -29,16 +29,19 @@ export type DefaultBaseTableProps = BaseTableProps<Record<string, unknown>>
 
 export default defineComponent(
   <T extends Record<string, unknown>>(props: BaseTableProps<T>) => {
-    const { rootClassName, columns, dataSource, components, hasHeader } = props
     const { size } = useConfigInject('')
     console.log('size', size.value)
     return () => (
       <StyledVcTableWrapper
-        class={cn(Classes.vcTableWrapper, rootClassName, { 'has-header': hasHeader })}
+        class={cn(Classes.vcTableWrapper, props.rootClassName, { 'has-header': props.hasHeader })}
       >
         <div class={cn(Classes.vcTable)}>
-          {hasHeader && <TableHeader columns={columns} />}
-          <TableBody columns={columns} dataSource={dataSource} components={components}></TableBody>
+          {props.hasHeader && <TableHeader columns={props.columns} />}
+          <TableBody
+            columns={props.columns}
+            dataSource={props.dataSource}
+            components={props.components}
+          ></TableBody>
         </div>
       </StyledVcTableWrapper>
     )

@@ -9,12 +9,11 @@ interface Props {
 
 export default defineComponent(
   (props: Props) => {
-    const { columns } = props
     return () => (
       <div class={cn(Classes.vcTableHeader)}>
         <table>
           <colgroup>
-            {columns.map((col) => (
+            {props.columns.map((col) => (
               <col
                 key={col.code}
                 style={{
@@ -25,7 +24,7 @@ export default defineComponent(
           </colgroup>
           <thead>
             <tr class={cn(Classes.vcTableHeaderRow)}>
-              {columns.map((col, i) => (
+              {props.columns.map((col, i) => (
                 <th class={cn(Classes.vcTableHeaderCell, { first: i === 0 })} key={col.code}>
                   {col.name}
                 </th>
@@ -37,7 +36,12 @@ export default defineComponent(
     )
   },
   {
-    props: ['columns'],
+    props: {
+      columns: {
+        type: Array,
+        default: () => []
+      }
+    },
     emits: []
   }
 )
