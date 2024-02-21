@@ -12,7 +12,7 @@ const dataSource: any[] = [
 ]
 
 const columns: Column[] = reactive([
-  { code: 'prov', name: '省份', width: 150 },
+  { lock: true, code: 'prov', name: '省份', width: 150 },
   { code: 'confirmed', name: '确诊', width: 100, align: 'right' },
   { code: 'cured', name: '治愈', width: 100, align: 'right' },
   { code: 'dead', name: '死亡', width: 100, align: 'right' },

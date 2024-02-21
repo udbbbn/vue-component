@@ -17,6 +17,10 @@ export const getComponentProps: () => ComponentObjectPropsOptions<DefaultBaseTab
     type: Boolean,
     default: true
   },
+  isLoading: {
+    type: Boolean,
+    default: false
+  },
   components: {
     type: Object as PropType<Components>,
     default: {

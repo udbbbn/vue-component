@@ -9,7 +9,11 @@ export default defineComponent(
     const { EmptyContent } = props.components!
     const colKeys = props.columns.map((el) => el.code)
     return () => (
-      <div class={cn(Classes.vcTableBody)}>
+      <div
+        class={cn(Classes.vcTableBody, 'no-scrollBar')}
+        onScroll={props.onScroll}
+        ref={props.containerRef}
+      >
         <table>
           <colgroup>
             {props.columns.map((col) => (
@@ -26,7 +30,22 @@ export default defineComponent(
               props.dataSource.map((data, idx) => (
                 <tr class={cn(Classes.vcTableRow, { first: idx === 0 })} key={idx}>
                   {colKeys.map((key, i) => (
-                    <td class={cn(Classes.vcTableCell, { first: i === 0 })}>{data[key]}</td>
+                    <td
+                      class={cn(Classes.vcTableCell, {
+                        first: i === 0,
+                        [Classes.vcTableCellLock]: props.columns[i].lock
+                      })}
+                      style={
+                        props.columns[i].lock
+                          ? {
+                              left:
+                                props.columns.slice(0, i).reduce((t, c) => t + c.width, 0) + 'px'
+                            }
+                          : {}
+                      }
+                    >
+                      {data[key]}
+                    </td>
                   ))}
                 </tr>
               ))

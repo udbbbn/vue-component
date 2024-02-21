@@ -10,7 +10,10 @@ export const Classes = {
   vcTableHeaderRow: `${prefix}table-header-row`,
   vcTableHeaderCell: `${prefix}table-header-cell`,
   vcTableRow: `${prefix}table-row`,
-  vcTableCell: `${prefix}table-cell`
+  vcTableCell: `${prefix}table-cell`,
+  vcTableCellLock: `${prefix}table-cell-fixed`,
+  vcTableLockShadow: `${prefix}table-lock-shadow`,
+  vcTableLeftLockShadow: `${prefix}table-left-lock-shadow`
 }
 
 export type BaseTableCssVariables = Partial<{
@@ -160,13 +163,48 @@ export const StyledVcTableWrapper = styled.div`
     ${outerBorderStyleMixin};
   }
 
+  .no-scrollBar {
+    scrollbar-width: none;
+  }
+
   .${Classes.vcTableHeader} {
     overflow-x: auto;
     overflow-y: hidden;
     background: var(--header-bgcolor);
   }
 
-  .${Classes.vcTableBody}. ${Classes.vcTableFooter} {
+  .${Classes.vcTableCellLock} {
+    position: sticky;
+    left: 0;
+  }
+
+  .${Classes.vcTableLockShadow} {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: 20;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .${Classes.vcTableLockShadow} .show-shadow {
+    box-shadow: var(--lock-shadow);
+    border-right: var(--cell-border-vertical);
+  }
+
+  .${Classes.vcTableLeftLockShadow} {
+    height: 100%;
+    margin-right: 20px;
+    box-shadow: none;
+  }
+
+  .${Classes.vcTableBody} {
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: var(--bgcolor);
+  }
+
+  .${Classes.vcTableBody} .${Classes.vcTableFooter} {
     overflow-x: auto;
     overflow-y: hidden;
     background: var(--bgcolor);
